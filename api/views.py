@@ -13,7 +13,6 @@ class UrlViewSet(viewsets.ModelViewSet):
 def redirect_to_origin(r, id):
     org = Url.objects.get(url_id=id)
     org.inc()
-    org.save()
     return redirect(org.url_actual)
 
 class UrlGenForm(View):

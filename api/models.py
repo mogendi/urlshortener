@@ -19,3 +19,4 @@ class Url(models.Model):
     def inc(self):
         with transaction.atomic():
             self.url_clicks += 1
+            self.save()
