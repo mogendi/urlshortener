@@ -11,6 +11,7 @@
 
   <body>
     {% csrf_token %}
+    <p id="errors" style="color: red; font-size: xx-large; margin-left: 30%; margin-top: 10%;"></p>
     <form class="form-inline" id="form-inline" style="margin-top: 15%; margin-left: 30%;">
         <div class="form-group mx-sm-3 mb-2">
           <label for="inputPassword2" class="sr-only">URL</label>
@@ -606,11 +607,24 @@
         $('#form-inline').submit(function(e) {
             e.preventDefault();
         });
+
+        function isUrlValid(userInput) {
+            var res = userInput.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+            if(res == null)
+                return false;
+            else
+                return true;
+        }
         
         function gen_url() {
             $("#clip_region").attr("hidden");
+            $("#errors").html();
             let url = document.getElementById("url_inp");
             let url_actual = url.value;
+            if( !isUrlValid(url_actual) ) {
+                $("#errors").html("Please enter a valid URL");
+                return;
+            }
             let url_id     = md5(url_actual).slice(0,8);
             let data  = {
                 "csrfmiddlewaretoken": "{{csrf_token}}",
