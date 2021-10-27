@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-n0&99cu@fz8$0=*8yb4&+dc%$d&0q(7kmyqt@bey2&*elelidn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'muze.wsgi.application'
+WSGI_APPLICATION = 'urlshortener.wsgi.application'
 
 
 # Database
