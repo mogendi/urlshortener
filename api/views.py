@@ -12,12 +12,10 @@ class UrlViewSet(viewsets.ModelViewSet):
 @api_view(['GET', 'POST', 'PUT', 'PATCH', 'DELETE'])
 def redirect_to_origin(r, id):
     org = Url.objects.get(url_id=id)
+    org.inc()
     return redirect(org.url_actual)
 
 class UrlGenForm(View):
 
     def get(self, r):
         return render(r, 'urls.html')
-    
-    def post(self, r):
-        pass
