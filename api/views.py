@@ -15,7 +15,7 @@ def redirect_to_origin(r, id):
         org = Url.objects.get(url_id=id)
         org.inc()
     except Url.DoesNotExist:
-        return redirect("new_url/")
+        return redirect("/new_url/")
     return redirect(org.url_actual)
 
 class UrlGenForm(View):
