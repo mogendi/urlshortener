@@ -27,6 +27,6 @@ app.conf.beat_schedule = {
         'task': 'deregister_urls',
 
         # execute every three minutes
-        'schedule': crontab(minute='*/1')
+        'schedule': crontab(minute='*/5')
     }
 }
