@@ -22,11 +22,11 @@ def debug_task(self):
 
 app.conf.beat_schedule = {
     # name of the scheduler
-    "unbook-land-plots": {
+    "deregister-urls": {
         # task name which we have created in accounts.tasks.py
-        'task': 'unbook_land_plots',
+        'task': 'deregister_urls',
 
         # execute every three minutes
-        'schedule': crontab(minute='*/15')
+        'schedule': crontab(minute='*/1')
     }
 }

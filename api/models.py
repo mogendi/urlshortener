@@ -7,7 +7,7 @@ class Url(models.Model):
     url_id         = models.CharField(max_length=255, blank=True, null=False, unique=True)
     url_actual     = models.CharField(max_length=4096, blank=False, null=False)
     url_clicks     = models.IntegerField(null=False, blank=True, default=1)
-    url_last_click = models.DateTimeField(auto_now_add=True, null=True, blank=True) 
+    url_last_click = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.pk and self.url_id == "" or len(self.url_id) < 1:
@@ -22,3 +22,7 @@ class Url(models.Model):
         with transaction.atomic():
             self.url_clicks += 1
             self.save()
+    
+    # Expired URL
+    def mark_expired(self):
+        self.delete()
